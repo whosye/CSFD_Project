@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from Main.movie_scraper import concurently_extract_data
+from Main.movie_scraper import extract_all_data
 from Main.models import Movie, Actor
 
 """
@@ -14,15 +14,17 @@ class Command(BaseCommand):
         Movie.objects.all().delete()
         Actor.objects.all().delete()
         self.stdout.write(self.style.SUCCESS("Data deleted from DB"))
-        
-        data = concurently_extract_data(2)
+        self.stdout.write(self.style.SUCCESS("Starting to scrap data from CSFD"))
+        data = extract_all_data(2)
 
         for movie, herci in data.items(): 
             film, _ = Movie.objects.get_or_create(movie_name=movie)
-            herci = data[movie]["actors"]
+            herci = data[movie]
             for herec in herci:
                 actor, _ = Actor.objects.get_or_create(actor_name=herec)
+                #print(f"adding {herec} to {movie}")
                 film.actors.add(actor)
-                film.save()
+
+            print(film.actors.all())
 
         self.stdout.write(self.style.SUCCESS(f"{len(data)} filmů nahráno do DB"))
