@@ -1,0 +1,7 @@
+venv
+db.sqlite3
+media
+migrations
+*.pyc
+__pycache__/
+launch.json
