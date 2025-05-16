@@ -7,18 +7,19 @@ This project scrapes the list of top-rated films from [CSFD.cz](https://www.csfd
 - Automated scraping of top films from CSFD
 - Extraction of actor names from each movie detail page
 - Data stored in Django models: `Movie` and `Actor`
-- Asynchronous scraping using `ThreadPoolExecutor` for faster performance
+- Asynchronous scraping using `ThreadPoolExecutor` for faster performance -- for show you can try run in sequential mode 
 - Unit tests using `unittest.mock` and local fake HTML files run -> python manage.py test
 
 ## Getting Started
 
 1. Clone the repository: git clone git@github.com:whosye/CSFD_Project.git
-2. Switch to the development branch `trunk` (if not already on it):
-3. Create and activate a virtual environment:
-4. Install dependencies: pip install -r requirements.txt   
-5. If no DB - Apply database migrations:
-6. If no DB - Run the scraper and populate the database: python manage.py csfd --pages 3 --seq True
-7. Run server: python manage.py runserver
+2. cd CSFD_Project
+3. Create and activate a virtual environment: python3 -m venv venv && source venv/bin/activate (depends on OS)
+4. Install dependencies: pip install -r requirements.txt
+5. cd csfdProject
+6. If no DB - Apply database migrations: python manage.py makemigrations && python manage.py migrate
+7. If no DB - Run the scraper and populate the database: python manage.py csfd --pages 3 --seq True
+8. Run server: python manage.py runserver
 
 
 
