@@ -20,7 +20,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f"Starting to scrap {kwargs['pages']} pages from CSFD"))
 
         try:
-            data = extract_all_data(pages=kwargs['pages'], seq=kwargs['sequential'])
+            data = extract_all_data(pages=kwargs['pages'], seq=kwargs['seq'])
             for movie, herci in data.items(): 
                 film, _ = Movie.objects.get_or_create(movie_name=movie)
                 herci = data[movie]

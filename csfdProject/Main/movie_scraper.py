@@ -98,13 +98,13 @@ def extract_all_data(pages: int, seq: bool) -> Dict[str, Dict[str, List[str]]]:
         for future in as_completed(futures):
             result = future.result()
             output.update(result)
-    end = start - time()
+    end = time() - start 
     print(f"Parallel scraping took {abs(end):.2f} seconds")
 
     if seq:
         start = time()
         [get_actors_from_detail( film["title"], film["url"]) for film in all_links]
-        end = start - time()
+        end = time() - start
         print(f"Sequential scraping took {abs(end):.2f} seconds")
 
     return output

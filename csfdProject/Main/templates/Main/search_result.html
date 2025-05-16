@@ -4,24 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      body {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .go-back-in-line {
+        display: flex;
+        flex-direction: row;
+        gap: 10rem;
+      }
+    </style>
   </head>
   <body>
-    <h2>Movie</h2>
-    <ul>
-      {% for movie in matched_movies %}
-      <a href="{% url 'Main:movie_detail' movie.id %}"
-        ><li>{{movie.movie_name}}</li></a
-      >
-      {% endfor %}
-    </ul>
+    <a href="{% url 'Main:index' %}"><h1>Get to start</h1></a>
 
-    <h2>Actors</h2>
-    <ul>
-      {% for actor in actors %}
-      <a href="{% url 'Main:actor_detail' actor.id %}"
-        ><li>{{actor.actor_name}}</li></a
-      >
-      {% endfor %}
-    </ul>
+    <div class="go-back-in-line">
+      <div>
+        <h2>Movie</h2>
+        <ul>
+          {% for movie in matched_movies %}
+          <a href="{% url 'Main:movie_detail' movie.id %}"
+            ><li>{{movie.movie_name}}</li></a
+          >
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h2>Actors</h2>
+        <ul>
+          {% for actor in actors %}
+          <a href="{% url 'Main:actor_detail' actor.id %}"
+            ><li>{{actor.actor_name}}</li></a
+          >
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
